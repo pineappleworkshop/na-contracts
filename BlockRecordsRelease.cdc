@@ -3,6 +3,7 @@ import NonFungibleToken from 0xSERVICE_ACCOUNT_ADDRESS
 import FungibleToken from 0xFUNGIBLE_TOKEN_CONTRACT_ADDRESS
 import FUSD from 0xFUSD_CONTRACT_ADDRESS
 import BlockRecordsNFT from 0xSERVICE_ACCOUNT_ADDRESS
+import BlockRecordsMarketplace from 0xSERVICE_ACCOUNT_ADDRESS
 
 /** 
 
@@ -154,7 +155,7 @@ pub contract BlockRecordsRelease {
         pub let metadata: {String: AnyStruct}
         pub let type: String
         pub var completed: Bool
-        pub let payout: Payout
+        pub let payout: BlockRecordsMarketplace.Payout
     }
 
     // acts as the root resource for any NFT minted by a creator
@@ -177,7 +178,7 @@ pub contract BlockRecordsRelease {
         pub var nftIDs: [UInt64]
 
         // the sale fee cut for the release creator
-        pub let payout: Payout
+        pub let payout: BlockRecordsMarketplace.Payout
 
         // specifies that all NFTs that should be added, were added
         pub var completed: Bool
@@ -203,7 +204,7 @@ pub contract BlockRecordsRelease {
 
             self.copiesCount = copiesCount
 
-            self.payout = Payout(
+            self.payout = BlockRecordsMarketplace.Payout(
                 fusdVault: fusdVault,
                 percentFee: percentFee
             )
@@ -382,23 +383,6 @@ pub contract BlockRecordsRelease {
             self.legalName = legalName
             self.imageURL = imageURL
             self.address = address
-        }
-    }
-
-    // todo: move this struct to another smart contract
-    pub struct Payout {
-        // the vault that  on the payout will be distributed to
-        pub let fusdVault: Capability<&{FungibleToken.Receiver}>
-
-        // percentage percentFee of the sale that will be paid out to the marketplace vault
-        pub let percentFee: UFix64 
-
-        init(
-            fusdVault: Capability<&{FungibleToken.Receiver}>,
-            percentFee: UFix64
-        ){
-            self.fusdVault = fusdVault
-            self.percentFee = percentFee
         }
     }
         
