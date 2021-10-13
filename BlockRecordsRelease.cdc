@@ -9,12 +9,11 @@ import BlockRecords from 0xSERVICE_ACCOUNT_ADDRESS
 
 ## Releases are the root resource of any BlockRecords nft.
 
-potential "creators" will create and save the creator resource to their storage and expose
-its capability receiver function publicly. this allows the service account to create a unique
-Collection, save it to storage, create a private capability, and send that capability 
-to the creator. the service account maintains the right to revoke this capability - blocking the
-creator's access to their release collection - in the event that the creator violates our terms
-and agreements.
+When a new Creator is onboarded onto the platform, a new Release Collection will be created for them and a
+capability will be given to their UserProfile; allowing the Creator to create new Releases and mint Block Records
+NFTs. A capability will also be added to the Marketplace to act as a pointer to the ReleaseCollection.
+
+NOTE: a user may only have a capability to 1 Release Collection at a time
 
 **/
 
