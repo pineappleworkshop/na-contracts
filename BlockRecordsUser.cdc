@@ -19,6 +19,11 @@ follow other users
 
 users who own a Resource Collection Capability are able to create releases
 
+## TODO:
+
+similarly to how the Marketplace lists storefronts and release collections, users
+users should be able to do the same
+
 ## Heavily Inspired By: 
 
 https://flow-view-source.com/testnet/account/0xba1132bc08f82fe2/contract/Ghost
