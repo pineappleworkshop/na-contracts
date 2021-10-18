@@ -86,8 +86,6 @@ pub contract BlockRecordsMarketplace {
         // pointers to listed user storefronts
         access(self) var storefronts: {Address: Capability<&BlockRecordsStorefront.Storefront{BlockRecordsStorefront.StorefrontMarketplace}>}
 
-        // todo: following this same pattern, we might want to store pointers to our users as well
-
         init(
             name: String,
             fusdVault: Capability<&{FungibleToken.Receiver}>,
