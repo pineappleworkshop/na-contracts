@@ -293,7 +293,6 @@ pub contract BlockRecordsStorefront {
         access(self) let details: ListingDetails
 
         // the seller's nft provider allowing the nft to be withdrawn on purchase
-        // todo: this should be revised when we implment albums
         access(contract) let nftProvider: Capability<&BlockRecordsSingle.Collection{BlockRecordsSingle.CollectionPublic, NonFungibleToken.Provider}>
 
         // the seller's receiver that will be deposited fusd on sale

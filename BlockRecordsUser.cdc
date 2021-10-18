@@ -19,11 +19,6 @@ follow other users
 
 users who own a Resource Collection Capability are able to create releases
 
-## TODO:
-
-similarly to how the Marketplace lists storefronts and release collections, users
-users should be able to do the same
-
 ## Heavily Inspired By: 
 
 https://flow-view-source.com/testnet/account/0xba1132bc08f82fe2/contract/Ghost
@@ -367,23 +362,6 @@ pub contract BlockRecordsUser {
                 self.releaseCollectionCapability == nil : "capability already set"
             }
             self.releaseCollectionCapability = cap
-
-            // todo: emit event
-
-            // let releaseCollection = self.releaseCollectionCapability!.borrow()!
-
-            // let creator = releaseCollection.creatorProfile
-
-            // todo: rename name as name
-            // emitted when a creator is granted the capability to a collection,
-            // allowing them to mint BlockRecords NFTs
-            // emit Event(type: "collection_capability_added", metadata: {
-            //     "collection_id": releaseCollection.id.toString(),
-            //     "creator_stage_name": creator.stageName,
-            //     "creator_legal_name": creator.name,
-            //     "creator_img_url": creator.image,
-            //     "creator_address": creator.address.toString()
-            // })
         }
 
         // create release

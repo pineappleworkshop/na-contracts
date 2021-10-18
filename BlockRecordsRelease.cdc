@@ -65,12 +65,6 @@ pub contract BlockRecordsRelease {
                 val.length <= 255: "logo must be 255 characters or less"
             }
         }
-        // todo:
-        // pub fun getSocialMedias(_ val: [String])  {
-        //     pre {
-        //         BlockRecordsUser.verifyTags(tags: val, tagLength:10, tagSize:3) : "cannot have more then 3 tags of length 10"
-        //     }
-        // }   
         pub fun borrowRelease(id: UInt64): &Release
         pub fun createAndAddRelease(
             type: String,
@@ -326,7 +320,6 @@ pub contract BlockRecordsRelease {
                 audio.length <= 255: "description must be 255 characters or less"
                 image.length <= 255: "description must be 255 characters or less"
                 copiesCount <= 10000: "total copies count must be 10,000 or less"
-                // todo: validate all payout receivers exist
             }
 
             self.id = BlockRecordsRelease.totalSupply
@@ -422,8 +415,6 @@ pub contract BlockRecordsRelease {
                 i = i + 1
             }
         }
-
-        // todo: pub fun mintAlbums
     }
         
     init() {
