@@ -9,11 +9,12 @@ import BlockRecords from 0xSERVICE_ACCOUNT_ADDRESS
 
 ## Releases are the root resource of any BlockRecords nft.
 
-When a new Creator is onboarded onto the platform, a new Release Collection will be created for them and a
-capability will be given to their UserProfile; allowing the Creator to create new Releases and mint Block Records
-NFTs. A capability will also be added to the Marketplace to act as a pointer to the ReleaseCollection.
-
-NOTE: a user may only have a capability to 1 Release Collection at a time
+potential "creators" will create and save the creator resource to their storage and expose
+its capability receiver function publicly. this allows the service account to create a unique
+Collection, save it to storage, create a private capability, and send that capability 
+to the creator. the service account maintains the right to revoke this capability - blocking the
+creator's access to their release collection - in the event that the creator violates our terms
+and agreements.
 
 **/
 
@@ -275,7 +276,7 @@ pub contract BlockRecordsRelease {
     pub resource interface ReleasePublic {
         pub let id: UInt64
         pub fun getNFTIDs(): [UInt64]
-        pub let metadata: {String: AnyStruct}
+        pub fun getMetadata(): {String: AnyStruct}
         pub let type: String
         pub fun getIsComplete(): Bool
     }
@@ -290,7 +291,7 @@ pub contract BlockRecordsRelease {
         // this metadata is almost identical - only lacking serial number & release ID - to
         // the metadata of nfts associated with this release.
         // much like the stamp used to print a pokemon card
-        pub let metadata: {String: AnyStruct}
+        access(self) let metadata: {String: AnyStruct}
 
         // "type" of release
         pub let type: String

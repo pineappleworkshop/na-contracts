@@ -7,14 +7,12 @@ import FUSD from 0xFUSD_CONTRACT_ADDRESS
 
 /* 
 
+INFO: This is a modified version of NFTStorefront.
+
 ## Storefronts facilitate sales for BlockRecords users (collectors and creators).
 
 Buyers can purchase these NFTs for sale by providing a capability to an FUSD vault
 with a sufficient balance. On each sale, payouts will be distributed to the NFT's designated parties.
-
-Users can list their Storefront on the Marketplace by giving it a capability. These capabilities allow users
-to view what others have for sale, purchase Listings, and put their own Listings up for sale on the Marketplace. 
-in exchange for this ease of use, the Marketplace takes a small percentage fee on every Listing purchase.
 
 */
 
@@ -63,11 +61,8 @@ pub contract BlockRecordsStorefront {
 
     // StorefrontMarketplace
     // An interface to allow listing and borrowing Listings, and purchasing items via Listings
-    // in a Storefront that's listed on a Marketplace. Note that the Storefront trusts the 
-    // marketplace to take a "MarketplaceFee" in purchaseListingFromMarketplace.
-    // NOTE: users should verify that Marketplace fees are acceptable and cannot be changed *before* listing their 
-    // storefronts. Otherwise, marketplaces could increase their fees and purchases will still go through.
-    // todo: maybe we can introduce a "maxMarketplaceFee" or something of that nature for the storefront
+    // in a Storefront.
+    //
     pub resource interface StorefrontMarketplace {
         pub fun getListingIDs(): [UInt64]
         pub fun borrowListingFromMarketplace(listingResourceID: UInt64): &Listing{ListingMarketplace}?
@@ -375,7 +370,7 @@ pub contract BlockRecordsStorefront {
             // and we must check the NFT resource it gives us to make sure that it is the correct one.
             assert(single.id == self.details.nftID, message: "withdrawn NFT does not have specified ID")
 
-            let payouts: [BlockRecords.Payout] = single.metadata["payouts"]! as! [BlockRecords.Payout]
+            let payouts: [BlockRecords.Payout] = single.getMetadata()["payouts"]! as! [BlockRecords.Payout]
 
             // distribute payouts
             for payout in payouts {
@@ -424,7 +419,7 @@ pub contract BlockRecordsStorefront {
             // and we must check the NFT resource it gives us to make sure that it is the correct one.
             assert(single.id == self.details.nftID, message: "withdrawn NFT does not have specified ID")
 
-            let payouts: [BlockRecords.Payout] = single.metadata["payouts"]! as! [BlockRecords.Payout]
+            let payouts: [BlockRecords.Payout] = single.getMetadata()["payouts"]! as! [BlockRecords.Payout]
 
             // distribute payouts
             for payout in payouts {
